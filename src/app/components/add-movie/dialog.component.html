@@ -1,0 +1,16 @@
+<h2 mat-dialog-title>Add movie</h2>
+
+<mat-dialog-content>
+  <div class="form-container">
+    <mat-form-field>
+      <input matInput [(ngModel)]="movie.name" placeholder="Name">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [(ngModel)]="movie.imdbLink" placeholder="Imdb link">
+    </mat-form-field>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions *ngIf="!editMode">
+  <button mat-raised-button (click)="add()">Add</button>
+  <button mat-button (click)="cancel()">Cancel</button>
+</mat-dialog-actions>

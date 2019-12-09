@@ -1,0 +1,25 @@
+<div class="container">
+
+  <div class="top-section">
+    <button class="title" mat-raised-button matTooltip="Click to change master color"
+      aria-label="Click to change master color" [ngStyle]="{'background-color': masterColor}"
+      (click)="changeColor(movie)">Movies</button>
+    <button class="add-movie-btn" mat-raised-button (click)="addMovie()">
+      <span>Add movie</span>
+    </button>
+  </div>
+
+  <div class="movies-container">
+    <div *ngFor="let movie of movies; let i=index;" class="movie-card"
+      [ngStyle]="{'background-color': movie.backgroundColor ? movie.backgroundColor : masterColor}">
+      <h3 class="movie-title"> {{ movie.name }} </h3>
+      <a class="imdb-link" [href]="movie.imdbLink" target="_blank"> Go to Imdb </a>
+      <button class="change-color" mat-raised-button (click)="changeColor(i)"> Change color </button>
+      <div class="update-delete-container">
+        <fa-icon class="trashIcon" [icon]="icons.faTrashAlt" (click)="deleteMovie(i)"></fa-icon>
+        <fa-icon class="pencilIcon" [icon]="icons.faPencilAlt" (click)="updateMovie(i)"></fa-icon>
+      </div>
+    </div>
+  </div>
+
+</div>
