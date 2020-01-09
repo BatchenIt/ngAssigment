@@ -1,23 +1,28 @@
-import { Component, OnInit } from '@angular/core';
-import { ApiService } from './../../services/api.service';
-import { Movie } from './../../models/movie';
-import { DialogComponent } from '../add-movie/dialog.component';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+
 import { MatDialog } from '@angular/material/dialog';
 import { faTrashAlt, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
+
+import { ApiService } from './../../services/api.service';
+import { Movie } from './../../models/movie';
+import { DialogComponent } from '../dialog/dialog.component';
+
 
 @Component({
   selector: 'app-movies',
   templateUrl: './movies.component.html',
   styleUrls: ['./movies.component.scss']
 })
-export class MoviesComponent implements OnInit {
+export class MoviesComponent implements OnInit, OnDestroy {
 
   movies: Movie[];
   masterColor: string = '#ea981d';
   icons: any = {};
+  private activatedSub: Subscription;
 
   constructor(private apiService: ApiService, public dialog: MatDialog) {
-    apiService.moviesEvent.subscribe((res: Movie) => this.movies = [...this.movies, { ...res }]);
+    this.activatedSub = apiService.moviesEvent.subscribe((res: Movie) => this.movies = [...this.movies, { ...res }]);
   }
 
   ngOnInit() {
@@ -57,6 +62,10 @@ export class MoviesComponent implements OnInit {
 
   updateMovie(i: number) {
     this._openDialog(this.movies[i]);
+  }
+
+  ngOnDestroy() {
+    this.activatedSub.unsubscribe();
   }
 }
 
