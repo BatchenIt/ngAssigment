@@ -6,7 +6,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { MoviesComponent } from './components/movies/movies.component';
 import { DialogComponent } from './components/dialog/dialog.component';
-import { ColorsComponent } from './components/colors/colors.component';
 
 import {
   MatDialogModule,
@@ -22,8 +21,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   declarations: [
     AppComponent,
     MoviesComponent,
-    DialogComponent,
-    ColorsComponent
+    DialogComponent
   ],
   imports: [
     BrowserModule,

@@ -14,6 +14,7 @@ import { DialogComponent } from '../dialog/dialog.component';
   templateUrl: './movies.component.html',
   styleUrls: ['./movies.component.scss']
 })
+
 export class MoviesComponent implements OnInit, OnDestroy {
 
   movies: Movie[];

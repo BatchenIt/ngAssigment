@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
 export class ApiService {
 
   movies: Movie[];
