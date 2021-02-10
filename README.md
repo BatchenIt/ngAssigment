@@ -1,2 +1,2 @@
 # Movies
-check my website -> https://batchenit.github.io/Movies/
+Check my website -> https://batchenit.github.io/Movies/
