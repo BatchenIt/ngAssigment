@@ -21,6 +21,7 @@ export class MoviesComponent implements OnInit, OnDestroy {
   masterColor: string = '#ea981d';
   icons: any = {};
   private activatedSub: Subscription;
+  _mtm = window['_mtm'];
 
   constructor(private apiService: ApiService, public dialog: MatDialog) {
     this.activatedSub = apiService.moviesEvent.subscribe((res: Movie) => this.movies = [...this.movies, { ...res }]);
@@ -50,7 +51,13 @@ export class MoviesComponent implements OnInit, OnDestroy {
       arrColors.filter(color => color != this.masterColor);
     let random: number = Math.floor(Math.random() * colorsWithoutLastColor.length);
 
-    i ? this.movies[i].backgroundColor = arrColors[random] : this.masterColor = arrColors[random];
+    if (i) {
+      this.movies[i].backgroundColor = arrColors[random];
+      return this._mtm.push({'change_color': this.movies[i].name});
+    }
+    this._mtm.push({'change_color': 'all'});
+    this.masterColor = arrColors[random];
+    console.log('_mtm', this._mtm);
   }
 
   addMovie() {
